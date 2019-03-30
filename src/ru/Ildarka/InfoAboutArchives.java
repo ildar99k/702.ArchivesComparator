@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/*
+ * Класс, содержащий всю информацию о двух архивах, является хранилищем(Синглтон)
+ */
 class InfoAboutArchives {
     private static final InfoAboutArchives infoAboutArchives = new InfoAboutArchives();
     private String nameOfOldArch;
@@ -20,11 +23,11 @@ class InfoAboutArchives {
     private InfoAboutArchives() {
     }
 
-    public static InfoAboutArchives getInfoAboutArchives() {
+    static InfoAboutArchives getInfoAboutArchives() {
         return infoAboutArchives;
     }
 
-    public Map<String, String> getRenamedFilesNames() {
+    Map<String, String> getRenamedFilesNames() {
         return renamedFilesNames;
     }
 
@@ -32,7 +35,7 @@ class InfoAboutArchives {
         this.renamedFilesNames = renamedFilesNames;
     }
 
-    public List<String> getDeletedFilesNames() {
+    List<String> getDeletedFilesNames() {
         return deletedFilesNames;
     }
 
@@ -40,7 +43,7 @@ class InfoAboutArchives {
         this.deletedFilesNames = deletedFilesNames;
     }
 
-    public List<String> getUpdatedFilesNames() {
+    List<String> getUpdatedFilesNames() {
         return updatedFilesNames;
     }
 
@@ -48,7 +51,7 @@ class InfoAboutArchives {
         this.updatedFilesNames = updatedFilesNames;
     }
 
-    public List<String> getNewFilesNames() {
+    List<String> getNewFilesNames() {
         return newFilesNames;
     }
 
@@ -60,7 +63,7 @@ class InfoAboutArchives {
         return oldArchiveFilesAndSizes;
     }
 
-    public void setOldArchiveFilesAndSizes(HashMap<String, Long> oldArchiveFilesAndSizes) {
+    void setOldArchiveFilesAndSizes(HashMap<String, Long> oldArchiveFilesAndSizes) {
         this.oldArchiveFilesAndSizes = oldArchiveFilesAndSizes;
     }
 
@@ -68,43 +71,43 @@ class InfoAboutArchives {
         return newArchiveFilesAndSizes;
     }
 
-    public String getOldArchivePath() {
+    String getOldArchivePath() {
         return oldArchivePath;
     }
 
-    public void setOldArchivePath(String oldArchivePath) {
+    void setOldArchivePath(String oldArchivePath) {
         this.oldArchivePath = oldArchivePath;
     }
 
-    public String getNewArchivePath() {
+    String getNewArchivePath() {
         return newArchivePath;
     }
 
-    public void setNewArchivePath(String newArchivePath) {
+    void setNewArchivePath(String newArchivePath) {
         this.newArchivePath = newArchivePath;
     }
 
-    public String getNameOfOldArch() {
+    String getNameOfOldArch() {
         return nameOfOldArch;
     }
 
-    public void setNameOfOldArch(String nameOfOldArch) {
+     void setNameOfOldArch(String nameOfOldArch) {
         this.nameOfOldArch = nameOfOldArch;
     }
 
-    public String getNameOfNewArch() {
+    String getNameOfNewArch() {
         return nameOfNewArch;
     }
 
-    public void setNameOfNewArch(String nameOfNewArch) {
+    void setNameOfNewArch(String nameOfNewArch) {
         this.nameOfNewArch = nameOfNewArch;
     }
 
-    public void setNewArchiveFilesAndSizes(HashMap<String, Long> newArchiveFilesAndSizes) {
+    void setNewArchiveFilesAndSizes(HashMap<String, Long> newArchiveFilesAndSizes) {
         this.newArchiveFilesAndSizes = newArchiveFilesAndSizes;
     }
 
-    public void fillInfoAboutArchives() {
+    void fillInfoAboutArchives() {
         setUpdatedFilesNames(Checker.checkUpdate(getOldArchiveFilesAndSizes(), getNewArchiveFilesAndSizes()));
         setRenamedFilesNames(Checker.checkRename(getOldArchiveFilesAndSizes(), getNewArchiveFilesAndSizes()));
         setNewFilesNames(Checker.checkDeletedOrCreated(getNewArchiveFilesAndSizes(), getOldArchiveFilesAndSizes()));

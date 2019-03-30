@@ -9,10 +9,14 @@ import java.util.zip.ZipInputStream;
 
 import static ru.Ildarka.UserInteraction.getArchive;
 
+/*
+ *Класс, являющийся контроллером.
+ * Выполняет сравнение двух архивов.
+ */
 class Comparator {
 
-    public void compareTwoArchives(String[] archivesPath) {
-        InfoAboutArchives infoAboutArchives=InfoAboutArchives.getInfoAboutArchives();
+     void compareTwoArchives(String[] archivesPath) {
+        InfoAboutArchives infoAboutArchives = InfoAboutArchives.getInfoAboutArchives();
         if (archivesPath.length == 2) {
             infoAboutArchives.setOldArchivePath(archivesPath[0]);
             infoAboutArchives.setNewArchivePath(archivesPath[1]);
@@ -26,12 +30,12 @@ class Comparator {
         infoAboutArchives.fillInfoAboutArchives();
         UserInteraction.showResultOfComparing();
     }
+
     private HashMap<String, Long> getFileInfo(String archive) {
-        if (InfoAboutArchives.getInfoAboutArchives().getNameOfOldArch()!=null){
-            InfoAboutArchives.getInfoAboutArchives().setNameOfNewArch(archive.substring(archive.lastIndexOf("\\")+1,archive.lastIndexOf(".")));
-        }
-        else {
-            InfoAboutArchives.getInfoAboutArchives().setNameOfOldArch(archive.substring(archive.lastIndexOf("\\")+1,archive.lastIndexOf(".")));
+        if (InfoAboutArchives.getInfoAboutArchives().getNameOfOldArch() != null) {
+            InfoAboutArchives.getInfoAboutArchives().setNameOfNewArch(archive.substring(archive.lastIndexOf("\\") + 1, archive.lastIndexOf(".")));
+        } else {
+            InfoAboutArchives.getInfoAboutArchives().setNameOfOldArch(archive.substring(archive.lastIndexOf("\\") + 1, archive.lastIndexOf(".")));
         }
         if (archive.isEmpty()) {
             System.out.println("you didn't choose archives, programm closes");
@@ -43,7 +47,7 @@ class Comparator {
             ZipEntry entry;
 
             while ((entry = zin.getNextEntry()) != null) {
-                archiveFilesAndSizes.put(entry.getName().substring(entry.getName().lastIndexOf("/")+1), entry.getSize());
+                archiveFilesAndSizes.put(entry.getName().substring(entry.getName().lastIndexOf("/") + 1), entry.getSize());
                 zin.closeEntry();
             }
         } catch (FileNotFoundException e) {
